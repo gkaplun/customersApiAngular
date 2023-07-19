@@ -1,0 +1,53 @@
+<div class="container my-5">
+
+  <h3>Edit a Customer</h3>
+
+  <form [formGroup]="customerForm" name="labelerForm" novalidate (keydown.enter)="$event.preventDefault()">
+    <div class="row">
+      <div class="d-flex flex-column col-6 justify-content-center mt-3">
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstName" aria-label="First Name" formControlName="firstName"
+            [ngClass]="{ required:true, 'is-invalid': frm['firstName'].errors && frm['firstName'].errors['required']  && customerForm.get('firstName')?.dirty}">
+          <div
+            *ngIf="frm['firstName'].errors && frm['firstName'].errors['required']  && customerForm.get('firstName')?.dirty"
+            class="text-danger">
+            First Name is required
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lastName" aria-label="Last Name" formControlName="lastName"
+            [ngClass]="{ required:true, 'is-invalid': frm['lastName'].errors && frm['lastName'].errors['required']  && customerForm.get('lastName')?.dirty}">
+          <div class="text-danger"
+            *ngIf="frm['lastName'].errors && frm['lastName'].errors['required'] && customerForm.get('lastName')?.dirty">
+            Last Name is Required
+          </div>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="emailAddress" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="emailAddress" aria-label="Email Address"
+            formControlName="emailAddress"
+            [ngClass]="{ required:true, 'is-invalid': frm['emailAddress'].errors && frm['emailAddress'].errors['required'] && frm['emailAddress'].errors['emailAddress'] && customerForm.get('emailAddress')?.dirty}">
+          <div
+            *ngIf="frm['emailAddress'].errors && frm['emailAddress'].errors['required'] && frm['emailAddress'].errors['email']  && customerForm.get('emailAddress')?.dirty"
+            class="text-danger">
+            Email Address is Required
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" (click)="cancel()" class="btn btn-light me-3">Cancel</button>
+      <button type="button" (click)="updateCustomer()" class="btn btn-primary">Update</button>
+    </div>
+
+
+  </form>
+
+</div>

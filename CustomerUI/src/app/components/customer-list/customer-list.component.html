@@ -1,0 +1,32 @@
+<div class="container my-5">
+
+  <h3>Customers</h3>
+
+  <table class="table table-striped mt-3" *ngIf="customers$ | async as customers; else notFound">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email Address</th>
+        <th>Created Date/Time</th>
+        <th>Updated Date/Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{customer.firstName}}</td>
+        <td>{{customer.lastName}}</td>
+        <td>{{customer.emailAddress}}</td>
+        <td>{{customer.createdDateTime | date : 'MM/dd/yyyy hh:mm a'}}</td>
+        <td>{{customer.updatedDateTime | date : 'MM/dd/yyyy hh:mm a'}}</td>
+        <td><a href="javascript:void(0)" (click)="editCustomer(customer)">View</a></td>
+        <td><a href="javascript:void(0)" (click)="deleteCustomer(customer)">Delete</a></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+<ng-template #notFound>
+  <p>Customers not found</p>
+</ng-template>
